@@ -4,9 +4,13 @@ using NUnit.Framework;
 
 namespace DiningPhilosophers.Tests
 {
+  [TestFixture]
+  [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
+  [Parallelizable(ParallelScope.All)]
   public class Tests
   {
     [TestCase(1)]
+    [TestCase(2)]
     [TestCase(5)]
     [TestCase(10)]
     public void ProgramContinuousTestForMinutes(int minute)
@@ -39,7 +43,7 @@ namespace DiningPhilosophers.Tests
     {
       var programTask = Task.Factory.StartNew(Program.Main);
       var stopwatch = Task.Factory.StartNew(
-        () => RunStopwatch(DateTime.Now.AddMinutes(days)));
+        () => RunStopwatch(DateTime.Now.AddDays(days)));
       Task.WaitAll(programTask, stopwatch);
       
       Assert.Pass();
