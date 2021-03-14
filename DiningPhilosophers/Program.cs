@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using DiningPhilosophers.DiningStrategy;
 
 namespace DiningPhilosophers
 {
@@ -20,7 +21,12 @@ namespace DiningPhilosophers
             
             for (var i = 0; i < numberOfPhilosophers; i++)
             {
-                philosophers.Add(new Philosopher((i + 1).ToString(), i));
+                var newPhilosopher = new Philosopher((i + 1).ToString(), i)
+                {
+                    DiningStrategy = new QueryableDiningStrategy()
+                };
+                philosophers.Add(newPhilosopher);
+                
                 var thread = new Thread(philosophers[i].Run);
                 thread.Start(forks);
             }
