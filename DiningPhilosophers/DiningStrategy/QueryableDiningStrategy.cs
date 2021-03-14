@@ -175,11 +175,14 @@ namespace DiningPhilosophers.DiningStrategy
     void OnTimer(object sender, System.Timers.ElapsedEventArgs e)
     {
       Console.BackgroundColor = ConsoleColor.DarkRed;
-      Console.WriteLine($"\nФИЛОСОФ {_philosopherName} УМЕР");
+      var message = $"\nФИЛОСОФ {_philosopherName} УМЕР";
+      Console.WriteLine(message);
       Console.ResetColor();
             
       _isDead = true;
       ((Timer)sender).Stop();
+      
+      throw new DiningPhilosophersStrategyFailedException(message);
     }
 
     #endregion

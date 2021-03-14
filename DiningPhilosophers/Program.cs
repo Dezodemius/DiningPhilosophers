@@ -8,7 +8,7 @@ namespace DiningPhilosophers
     /// <summary>
     /// Стандартный класс приложения.
     /// </summary>
-    internal static class Program
+    public static class Program
     {
         /// <summary>
         /// Точка входа в приложение.
